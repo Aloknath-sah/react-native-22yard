@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { View, TextInput, Button } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { addMember } from '../Redux/action';
+import { useNavigation } from '@react-navigation/native';
 
-export const AddTeamMember = ({navigation}) => {
-
+export const AddTeamMember = () => {
+  const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const [newMember, setMember] = useState({
@@ -13,10 +14,11 @@ export const AddTeamMember = ({navigation}) => {
     phone: '',
     email: ''
   })
+  console.warn("nav", navigation);
 
   const handleAddMember = () => {
     dispatch(addMember({ ...newMember, id: Date.now() }));
-    navigation.goBack();
+    navigation.navigate('MemberList');
   }
   return (
     <View>
