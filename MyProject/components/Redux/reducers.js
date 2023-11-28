@@ -13,7 +13,16 @@ const initialState = {
         return {
           ...state,
           teamMembers: state.teamMembers.filter((employee) => employee.id !== action.payload)
-        } 
+        }
+        case 'UPDATE_MEMBER':
+          console.warn("team",state.teamMembers);
+          console.warn("pay",action.payload);
+          return {
+            ...state,
+            teamMembers: state.teamMembers.map((employee) =>
+            employee.id === action.payload.id ? { ...employee, ...action.payload.updateMember } : employee
+            )
+        }
       default:
         return state;
     }
