@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button } from 'react-native';
+import { View, TextInput, Button, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { addMember } from '../Redux/action';
 import { useNavigation } from '@react-navigation/native';
+import {Picker} from '@react-native-picker/picker';
 
 export const AddTeamMember = () => {
   const navigation = useNavigation();
@@ -27,11 +28,16 @@ export const AddTeamMember = () => {
         value={newMember.name}
         onChangeText={(text) => setMember({ ...newMember, name: text })}
       />
-      <TextInput
-        placeholder="Position"
-        value={newMember.position}
-        onChangeText={(text) => setMember({ ...newMember, position: text })}
-      />
+      <Picker
+        selectedValue={newMember.position}
+        onValueChange={(itemValue, itemIndex) => setMember({ ...newMember, position: itemValue })}
+        style={styles.picker}
+      >
+        <Picker.Item label="Choose Department" />
+        <Picker.Item label="HR" value="HR" />
+        <Picker.Item label="Head of engineering" value="Head_of_Enginnering" />
+        <Picker.Item label="Head of design" value="Head_of_design" />
+      </Picker>
       <TextInput
         placeholder="Phone"
         value={newMember.phone}
@@ -46,3 +52,10 @@ export const AddTeamMember = () => {
     </View>
   )
 }
+const styles = StyleSheet.create({
+  picker: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+  },
+});

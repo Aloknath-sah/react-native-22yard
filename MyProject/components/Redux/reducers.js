@@ -9,6 +9,11 @@ const initialState = {
     switch (action.type) {
       case 'ADD_MEMBER':
         return { ...state, teamMembers: [...state.teamMembers, action.payload] };
+      case 'REMOVE_MEMBER':
+        return {
+          ...state,
+          teamMembers: state.teamMembers.filter((employee) => employee.id !== action.payload)
+        } 
       default:
         return state;
     }
