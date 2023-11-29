@@ -1,6 +1,6 @@
 const initialState = {
     teamMembers: [
-      { id: 1, name: 'CEO', position: 'CEO', phone: '123456789', email: 'ceo@example.com' },
+      { id: 1, name: 'Anurag', position: 'CEO', phone: '123456789', email: 'ceo@example.com' },
       // Add more initial teamMembers as needed
     ],
   };

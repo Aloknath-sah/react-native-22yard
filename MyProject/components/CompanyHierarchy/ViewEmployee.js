@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { removeMember, updateMember } from '../Redux/action';
@@ -18,6 +18,7 @@ export const ViewEmployee = () => {
 
     const [selectedMember, setSelectedMember] = useState(null);
     const [isModalVisible, setModalVisible] = useState(false);
+    const [searchText, setSearchText] = useState('');
 
     const handleAddNewMember = () => {
         navigation.navigate('AddMember');
@@ -37,20 +38,33 @@ export const ViewEmployee = () => {
         setSelectedMember(null);
       };
 
-     
-      
+    // Function to filter employees based on search criteria
+    const filteredEmployees = employeeData.filter((employee) => {
+        const searchTerm = searchText.toLowerCase();
+        return (
+        employee.name.toLowerCase().includes(searchTerm) ||
+        employee.phone.includes(searchTerm) ||
+        employee.email.toLowerCase().includes(searchTerm)
+        );
+    });
 
   return (
     <View style={styles.container}>
         <View>
             <Button title="Add new Member" onPress={handleAddNewMember} />
         </View>
+        <TextInput
+            style={styles.searchInput}
+            placeholder="Search by Name, Phone, or Email"
+            onChangeText={(text) => setSearchText(text)}
+            value={searchText}
+        />
         <View style={styles.listItem}>
             <Text style={styles.itemText}>Position Name</Text>
             <Text style={styles.itemText}>Employee Name</Text>
         </View>
         {
-            employeeData.map((item) => (
+            filteredEmployees.map((item) => (
                 <View style={styles.listItem} key={item.id}>
                     <Text style={styles.itemText}> {item.position} </Text>
                     <Text style={styles.itemText}> {item.name} </Text>
@@ -85,4 +99,11 @@ const styles = StyleSheet.create({
       fontSize: 18,
       flex: 1
     },
+    searchInput: {
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        margin: 10,
+        padding: 10,
+      },
   });
