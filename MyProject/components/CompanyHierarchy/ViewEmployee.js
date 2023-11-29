@@ -9,11 +9,29 @@ import { useState, useEffect } from 'react';
 export const ViewEmployee = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
-    const employeeData = useSelector((state) => state.teamMembers);
+    //const employeeData = useSelector((state) => state.teamMembers);
+    const companyData = useSelector((state) => state.company);
 
+      let mydata = companyData[0]?.company_teamMembers?.map((item) => item?.teamMembers_dept);
+    
+      const extractTeamMembers = (arrayStructure) => {
+        const teamMembers = [];
+      
+        arrayStructure.forEach((innerArray) => {
+          innerArray.forEach((teamObject) => {
+            if (teamObject && teamObject.teamLeader && teamObject.teamLeader.teamMembers) {
+              teamMembers.push(...teamObject.teamLeader.teamMembers);
+            }
+          });
+        });
+      
+        return teamMembers;
+      };
+      const teamMembers = extractTeamMembers(mydata);
+      console.log("all", teamMembers);
+      const employeeData = teamMembers;
     useEffect(() => {
         setSelectedMember(null);
-        console.warn("employeeData", employeeData);
       }, [employeeData])
 
     const [selectedMember, setSelectedMember] = useState(null);

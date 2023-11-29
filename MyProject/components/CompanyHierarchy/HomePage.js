@@ -6,11 +6,11 @@ export const HomePage = () => {
     const navigation = useNavigation();
 
     const handleManageEmp = () => {
-        navigation.navigate('ManageTeam');
+        navigation.navigate('MemberList');
     }
 
     const handleManageTeam = () => {
-        navigation.navigate('AddMember');
+        navigation.navigate('ManageTeam');
     }
   return (
     <View>

@@ -1,4 +1,7 @@
+import companyData from "../companyData";
+
 const initialState = {
+  company: companyData,
     teamMembers: [
       { id: 1, name: 'Anurag', position: 'CEO', phone: '123456789', email: 'ceo@example.com' },
       // Add more initial teamMembers as needed
