@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 
 export const HrTeams = () => {
@@ -12,11 +12,15 @@ export const HrTeams = () => {
 
   return (
     <View>
+      <View style={styles.listItem}>
+        <Text style={styles.itemText}>Team Name</Text>
+        <Text style={styles.itemText}>Team Leader Name</Text>
+      </View>
       <View>
         {hrTeamMembers?.map(item => (
-          <View key={item.id}>
-            <Text>{`Team Name: ${item?.name}`} </Text>
-            <Text>{`Team Leader Name: ${item?.teamLeader?.name}`} </Text>
+          <View key={item.id} style={styles.innerlistItem}>
+            <Text style={styles.itemText}>{item?.name} </Text>
+            <Text style={styles.itemText}>{item?.teamLeader?.name} </Text>
           </View>
         ))}
       </View>
@@ -24,3 +28,29 @@ export const HrTeams = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  listItem: {
+    flexDirection: 'row',
+    height: 100, 
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd', 
+    paddingLeft: '10%',
+    backgroundColor: '#D3D3D3',
+  },
+  innerlistItem: {
+    flexDirection: 'row',
+    height: 100, 
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd', 
+    paddingLeft: '10%'
+  },
+  itemText: {
+    fontSize: 18,
+    flex: 1,
+    
+  },
+})

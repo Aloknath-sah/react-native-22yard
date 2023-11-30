@@ -29,8 +29,20 @@ export const ManageTeam = () => {
       </View>
 
       <View style={styles.threecards}>
-        {companyData[0]?.company_teamMembers?.map(item => (
+        {companyData[0]?.company_teamMembers?.slice(0, 2)?.map(item => (
           <View style={styles.teamCard}>
+            <Text style={styles.title}>{`Name: ${item.name}`} </Text>
+            <Text style={styles.subtitle}>{`Position: ${item.position}`} </Text>
+            <Button
+              title="see the teams"
+              onPress={() => handleTeamData(item.position)}
+            />
+          </View>
+        ))}
+      </View>
+      <View style={styles.lastcards}>
+        {companyData[0]?.company_teamMembers?.slice(2)?.map(item => (
+          <View style={styles.teamlastCard}>
             <Text style={styles.title}>{`Name: ${item.name}`} </Text>
             <Text style={styles.subtitle}>{`Position: ${item.position}`} </Text>
             <Button
@@ -46,7 +58,7 @@ export const ManageTeam = () => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#D3D3D3',
     borderRadius: 8,
     elevation: 3,
     shadowColor: '#000',
@@ -56,20 +68,25 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginVertical: 6,
     padding: 15,
+    alignItems: 'center',
+    marginLeft: '8%',
+    marginRight: '8%',
   },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 5,
+    marginBottom: 10,
   },
   subtitle: {
     fontSize: 16,
     color: '#555',
-    marginBottom: 5,
+    marginBottom: 10,
   },
   threecards: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    marginLeft: '5%',
+    marginRight: '5%'
   },
   teamCard: {
     flex: 1,
@@ -84,5 +101,26 @@ const styles = StyleSheet.create({
     marginVertical: 6,
     padding: 15,
     width: 60,
+  },
+  lastcards: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingHorizontal: 10,
+  },
+  teamlastCard: {
+    flexBasis: '50%',
+    backgroundColor: '#ffffff',
+    borderRadius: 8,
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    marginHorizontal: 10,
+    marginVertical: 6,
+    padding: 15,
+    alignItems: 'center',
+    marginLeft: '25%'
+   
   },
 })

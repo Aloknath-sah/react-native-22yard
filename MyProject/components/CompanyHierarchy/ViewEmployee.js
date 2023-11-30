@@ -1,5 +1,12 @@
 import React from 'react'
-import {View, Text, StyleSheet, Button, TextInput} from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux'
 import {useNavigation} from '@react-navigation/native'
 import {removeMember, updateMember} from '../Redux/action'
@@ -59,22 +66,28 @@ export const ViewEmployee = () => {
         onChangeText={text => setSearchText(text)}
         value={searchText}
       />
-      <View style={styles.listItem}>
-        <Text style={styles.itemText}>Position Name</Text>
-        <Text style={styles.itemText}>Employee Name</Text>
+      <View style={styles.listItemTop}>
+        <Text style={styles.itemText}> Position {'\n'} Name</Text>
+        <Text style={styles.itemText}> Employee {'\n'}Name</Text>
+        <Text style={styles.itemText}> Update/ {'\n'}Remove</Text>
       </View>
       {filteredEmployees.map(item => (
         <View style={styles.listItem} key={item.id}>
           <Text style={styles.itemText}> {item.position} </Text>
           <Text style={styles.itemText}> {item.name} </Text>
-          <Button
-            title="Update Member"
-            onPress={() => handleUpdateMember(item)}
-          />
-          <Button
-            title="Remove Member"
-            onPress={() => handleRemoveMember(item.id)}
-          />
+          <View style={styles.button}>
+            <TouchableOpacity
+              onPress={() => handleUpdateMember(item)}
+              style={styles.btnElement}>
+              <Text style={styles.buttonText}>Update Member </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => handleRemoveMember(item.id)}
+              style={styles.btnElement}>
+              <Text style={styles.buttonText}>Remove Member </Text>
+            </TouchableOpacity>
+          </View>
           <UpdateMember
             visible={isModalVisible}
             onClose={closeModal}
@@ -91,17 +104,41 @@ const styles = StyleSheet.create({
     // flex: 1,
     //flexDirection: 'row',
   },
-  listItem: {
+  button: {
+    flexDirection: 'column',
+  },
+  btnElement: {
+    backgroundColor: 'blue',
+    padding: 8,
+    marginHorizontal: 5,
+    borderRadius: 5,
+    marginBottom: 5,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 13,
+  },
+  listItemTop: {
     flexDirection: 'row',
-    height: 100, 
+    height: 100,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: '#ddd', 
+    borderBottomColor: '#ddd',
+    backgroundColor: '#D3D3D3',
+  },
+  listItem: {
+    flexDirection: 'row',
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
   },
   itemText: {
     fontSize: 18,
     flex: 1,
+    textAlign: 'center',
   },
   searchInput: {
     height: 40,

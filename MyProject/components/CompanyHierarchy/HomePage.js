@@ -31,13 +31,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  box: {
-    display: 'flex',
+  button: {
+    backgroundColor: 'blue',
+    padding: 10, 
+    marginVertical: 10,
+    width: '50%',
     alignItems: 'center',
-    margin: 10,
+    borderRadius: 7
   },
-  btn: {
-    justifyContent: 'center',
-    padding: 20,
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
   },
 })
