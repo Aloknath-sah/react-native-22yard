@@ -1,32 +1,39 @@
-import React, {useState} from 'react'
-import {StyleSheet, TouchableOpacity, Text, View, TextInput, Modal, Button} from 'react-native'
-import {updateMemberAction} from '../Redux/action'
-import {Picker} from '@react-native-picker/picker'
-import {useDispatch} from 'react-redux'
+import React, {useState} from 'react';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+  TextInput,
+  Modal,
+  Button,
+} from 'react-native'
+import {updateMemberAction} from '../Redux/action';
+import {Picker} from '@react-native-picker/picker';
+import {useDispatch} from 'react-redux';
 
 export const UpdateMember = ({visible, onClose, memberData}) => {
-  const dispatch = useDispatch()
-  const [updateMember, setUpdateMember] = useState(memberData)
-  console.warn('update', updateMember)
+  const dispatch = useDispatch();
+  const [updateMember, setUpdateMember] = useState(memberData);
+  console.warn('update', updateMember);
   const handleUpdateMember = () => {
-    console.warn('memberid', memberData.id)
-    console.warn('updatedmember', updateMember)
+    console.warn('memberid', memberData.id);
+    console.warn('updatedmember', updateMember);
     dispatch(
       updateMemberAction({id: memberData.id, updateMember: updateMember}),
-    )
-    onClose()
-  }
+    );
+    onClose();
+  };
   return (
-    <Modal visible={visible} animationType="slide"  >
+    <Modal visible={visible} animationType="slide">
       <View style={styles.modalContainer}>
-        
         <TextInput
           defaultValue={memberData?.name}
           value={updateMember?.name}
           onChangeText={text => setUpdateMember({...updateMember, name: text})}
           style={styles.textinput}
         />
-        
+
         <Picker
           selectedValue={updateMember?.position}
           onValueChange={(itemValue, itemIndex) =>
@@ -41,7 +48,7 @@ export const UpdateMember = ({visible, onClose, memberData}) => {
           />
           <Picker.Item label="Head of design" value="Head_of_design" />
         </Picker>
-       
+
         <TextInput
           defaultValue="Phone"
           value={memberData?.phone}
@@ -55,18 +62,19 @@ export const UpdateMember = ({visible, onClose, memberData}) => {
           style={styles.textinput}
         />
         <View style={styles.buttons}>
-        <TouchableOpacity onPress={handleUpdateMember} style={styles.btnElement}>
-          <Text style={styles.buttonText}>Update team Member</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={onClose} style={styles.btnElement}>
-          <Text style={styles.buttonText}>Cancel</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            onPress={handleUpdateMember}
+            style={styles.btnElement}>
+            <Text style={styles.buttonText}>Update team Member</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={onClose} style={styles.btnElement}>
+            <Text style={styles.buttonText}>Cancel</Text>
+          </TouchableOpacity>
         </View>
-       
       </View>
     </Modal>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   modalContainer: {
@@ -76,17 +84,16 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   picker: {
-   backgroundColor: '#D3D3D3',
+    backgroundColor: '#D3D3D3',
     width: '70%',
     marginTop: 10,
-    borderWidth: 1
+    borderWidth: 1,
   },
   textinput: {
     width: '70%',
     textAlign: 'center',
     borderWidth: 1,
     marginTop: 10,
-    
   },
   btnElement: {
     backgroundColor: 'blue',
@@ -101,7 +108,7 @@ const styles = StyleSheet.create({
   },
   buttons: {
     flexDirection: 'row',
-    marginTop: 10
+    marginTop: 10,
   },
   card: {
     backgroundColor: 'white',
@@ -109,8 +116,8 @@ const styles = StyleSheet.create({
     padding: 20,
     elevation: 5, // for Android shadow
     shadowColor: '#000', // for iOS shadow
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.2,
     shadowRadius: 5,
   },
-})
+});

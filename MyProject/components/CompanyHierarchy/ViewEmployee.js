@@ -57,15 +57,16 @@ export const ViewEmployee = () => {
 
   return (
     <View style={styles.container}>
-      <View>
-        <Button title="Add new Member" onPress={handleAddNewMember} />
-      </View>
+      
       <TextInput
         style={styles.searchInput}
         placeholder="Search by Name, Phone, or Email"
         onChangeText={text => setSearchText(text)}
         value={searchText}
       />
+      <TouchableOpacity onPress={handleAddNewMember} style={styles.buttonTopAdd}>
+        <Text style={styles.buttonTextTopAdd}>Add new Member</Text>
+      </TouchableOpacity>
       <View style={styles.listItemTop}>
         <Text style={styles.itemText}> Position {'\n'} Name</Text>
         <Text style={styles.itemText}> Employee {'\n'}Name</Text>
@@ -104,6 +105,18 @@ const styles = StyleSheet.create({
     // flex: 1,
     //flexDirection: 'row',
   },
+  buttonTextTopAdd: {
+    color: 'white',
+    fontSize: 17,
+  },
+  buttonTopAdd: {
+    backgroundColor: 'blue',
+    padding: 12,
+    textAlign: 'center',
+    alignItems: 'center',
+    marginBottom: 5,
+    margin: 10
+  },
   button: {
     flexDirection: 'column',
   },
@@ -126,6 +139,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
     backgroundColor: '#D3D3D3',
+    margin: 10
   },
   listItem: {
     flexDirection: 'row',
@@ -134,6 +148,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
+    margin: 10
   },
   itemText: {
     fontSize: 18,

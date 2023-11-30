@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, TextInput, Button, StyleSheet} from 'react-native'
+import {View, Text, TextInput, Button, StyleSheet, TouchableOpacity} from 'react-native'
 import {useDispatch} from 'react-redux'
 import {addMember} from '../Redux/action'
 import {useNavigation} from '@react-navigation/native'
@@ -26,6 +26,7 @@ export const AddTeamMember = () => {
         placeholder="Name"
         value={newMember.name}
         onChangeText={text => setMember({...newMember, name: text})}
+        style={styles.TextInput}
       />
       <Picker
         selectedValue={newMember.position}
@@ -42,13 +43,17 @@ export const AddTeamMember = () => {
         placeholder="Phone"
         value={newMember.phone}
         onChangeText={text => setMember({...newMember, phone: text})}
+        style={styles.TextInput}
       />
       <TextInput
         placeholder="Email"
         value={newMember.email}
         onChangeText={text => setMember({...newMember, email: text})}
+        style={styles.TextInput}
       />
-      <Button title="Add Team Member" onPress={handleAddMember} />
+      <TouchableOpacity onPress={handleAddMember} style={styles.button}>
+        <Text style={styles.buttonText}>Add Team Member</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -57,5 +62,24 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
+    backgroundColor: '#D3D3D3',
+    marginTop: 10
   },
+  buttonText: {
+    color: 'white',
+    fontSize: 17,
+  },
+  button: {
+    backgroundColor: 'blue',
+    padding: 12,
+    textAlign: 'center',
+    alignItems: 'center',
+    marginBottom: 5,
+    marginTop: 10
+  },
+  TextInput: {
+    borderWidth: 1,
+    marginTop: 10,
+    paddingLeft: 15
+  }
 })
