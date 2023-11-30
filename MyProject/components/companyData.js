@@ -1,14 +1,14 @@
 const companyData = [
     {
       id: 1,
-      name: 'CEO',
+      name: 'Asutosh',
       position: 'CEO',
       phone: '123456789',
       email: 'ceo@example.com',
       company_teamMembers: [
         {
           id: 2,
-          name: 'Head of Staff/HR',
+          name: 'Gaurav',
           position: 'Head of Staff/HR',
           phone: '987654321',
           email: 'hr@example.com',
@@ -31,14 +31,14 @@ const companyData = [
         },
         {
           id: 3,
-          name: 'Head of Engineering',
+          name: 'Asutosh',
           position: 'Head of Engineering',
           phone: '987654321',
           email: 'hr@example.com',
           teamMembers_dept: [
             {
               id: 32,
-              name: 'Team 1',
+              name: 'Team hoe',
               teamLeader: {
                 id: 321,
                 name: 'Team Leader 1',
@@ -54,14 +54,14 @@ const companyData = [
         },
         {
           id: 4,
-          name: 'Head of Design',
+          name: 'Apurva',
           position: 'Head of Design',
           phone: '987654321',
           email: 'hr@example.com',
           teamMembers_dept: [
             {
               id: 33,
-              name: 'Team 1',
+              name: 'Team hod',
               teamLeader: {
                 id: 331,
                 name: 'Team Leader 1',

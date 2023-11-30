@@ -1,14 +1,28 @@
 import companyData from "../companyData";
 
+  const extractTeamMembers = (arrayStructure) => {
+    console.log("arrayStructure", arrayStructure);
+    const newTeamMembers = [];
+  
+    arrayStructure.forEach((innerArray) => {
+      innerArray.forEach((teamObject) => {
+        if (teamObject && teamObject?.teamLeader && teamObject?.teamLeader?.teamMembers) {
+          newTeamMembers.push(...teamObject?.teamLeader?.teamMembers);
+        }
+      });
+    });
+  
+    return newTeamMembers;
+  }; 
+
+  console.log("companyData", companyData[0]?.company_teamMembers?.map((item) => item?.teamMembers_dept));
 const initialState = {
-  company: companyData,
-    teamMembers: [
-      { id: 1, name: 'Anurag', position: 'CEO', phone: '123456789', email: 'ceo@example.com' },
-      // Add more initial teamMembers as needed
-    ],
+    company: companyData,
+    teamMembers: extractTeamMembers(companyData[0]?.company_teamMembers?.map((item) => item?.teamMembers_dept)),
   };
   
   const rootReducer = (state = initialState, action) => {
+    console.log("teamMembers", state.teamMembers);
     switch (action.type) {
       case 'ADD_MEMBER':
         return { ...state, teamMembers: [...state.teamMembers, action.payload] };
@@ -29,6 +43,8 @@ const initialState = {
       default:
         return state;
     }
+
+    
   };
   
   export default rootReducer;

@@ -13,4 +13,10 @@ export const updateMemberAction = (member) => ({
     payload: member,
 });
   
+export const addTeamMemberToDept = (teamMember, deptId) => {
+  return {
+    type: 'ADD_TEAM_MEMBER_TO_DEPT',
+    payload: { teamMember, deptId },
+  };
+};
   

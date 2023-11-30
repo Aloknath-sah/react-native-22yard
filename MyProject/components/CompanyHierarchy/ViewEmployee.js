@@ -10,26 +10,10 @@ export const ViewEmployee = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
     //const employeeData = useSelector((state) => state.teamMembers);
-    const companyData = useSelector((state) => state.company);
+    const employeeData = useSelector((state) => state.teamMembers);
 
-      let mydata = companyData[0]?.company_teamMembers?.map((item) => item?.teamMembers_dept);
-    
-      const extractTeamMembers = (arrayStructure) => {
-        const teamMembers = [];
-      
-        arrayStructure.forEach((innerArray) => {
-          innerArray.forEach((teamObject) => {
-            if (teamObject && teamObject.teamLeader && teamObject.teamLeader.teamMembers) {
-              teamMembers.push(...teamObject.teamLeader.teamMembers);
-            }
-          });
-        });
-      
-        return teamMembers;
-      };
-      const teamMembers = extractTeamMembers(mydata);
-      console.log("all", teamMembers);
-      const employeeData = teamMembers;
+      //const teamMembers = extractTeamMembers(mydata);
+      //const employeeData = teamMembers;
     useEffect(() => {
         setSelectedMember(null);
       }, [employeeData])
