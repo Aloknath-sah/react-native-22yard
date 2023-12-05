@@ -4,11 +4,13 @@ import {useSelector} from 'react-redux'
 import {useNavigation} from '@react-navigation/native'
 
 export const ManageTeam = () => {
+  // to manage different teams card structure is made where basic information is there
+  // and on clicking the card user can see the details of the particular deparment team.
+
   const companyData = useSelector(state => state.company)
   const navigation = useNavigation()
 
   const handleTeamData = position => {
-    console.warn('pos', position);
     if (position === 'Head of Design') {
       navigation.navigate('Head_of_Design')
     } else if (position === 'Head of Engineering') {
@@ -16,7 +18,7 @@ export const ManageTeam = () => {
     } else if (position === 'Head of Staff/HR') {
       navigation.navigate('HR')
     }
-  };
+  }
   return (
     <View>
       <View>
@@ -53,8 +55,8 @@ export const ManageTeam = () => {
         ))}
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   card: {
@@ -76,17 +78,19 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
+    color: 'black',
   },
   subtitle: {
     fontSize: 16,
     color: '#555',
     marginBottom: 10,
+    color: 'black',
   },
   threecards: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginLeft: '5%',
-    marginRight: '5%'
+    marginRight: '5%',
   },
   teamCard: {
     flex: 1,
@@ -113,14 +117,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     elevation: 3,
     shadowColor: '#000',
-    shadowOffset: { width: 1, height: 1 },
+    shadowOffset: {width: 1, height: 1},
     shadowOpacity: 0.3,
     shadowRadius: 2,
     marginHorizontal: 10,
     marginVertical: 6,
     padding: 15,
     alignItems: 'center',
-    marginLeft: '25%'
-   
+    marginLeft: '25%',
   },
 })

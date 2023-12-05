@@ -14,17 +14,18 @@ export const AddTeams = () => {
     position: '',
     phone: '',
     email: '',
-  });
-  console.warn('nav', navigation);
+  })
 
   const handleAddMember = () => {
     dispatch(addMember({...newTeam, id: Date.now()}))
     navigation.navigate('MemberList')
-  };
+  }
   return (
     <View>
       <TextInput
+        style={styles.placeholderText}
         placeholder="Name"
+        placeholderTextColor="black"
         value={newTeam.name}
         onChangeText={text => setTeam({...newTeam, name: text})}
       />
@@ -40,23 +41,31 @@ export const AddTeams = () => {
         <Picker.Item label="Head of design" value="Head_of_design" />
       </Picker>
       <TextInput
+        style={styles.placeholderText}
         placeholder="Phone"
+        placeholderTextColor="black"
         value={newTeam.phone}
         onChangeText={text => setTeam({...newTeam, phone: text})}
       />
       <TextInput
+        style={styles.placeholderText}
         placeholder="Email"
+        placeholderTextColor="black"
         value={newTeam.email}
         onChangeText={text => setTeam({...newTeam, email: text})}
       />
       <Button title="Add Team Member" onPress={handleAddMember} />
     </View>
-  );
-};
+  )
+}
 const styles = StyleSheet.create({
   picker: {
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
+  },
+  placeholderText: {
+    color: 'black',
+    placeholderTextColor: 'gray',
   },
 })

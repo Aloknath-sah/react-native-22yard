@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 import {
   StyleSheet,
   TouchableOpacity,
@@ -8,30 +8,31 @@ import {
   Modal,
   Button,
 } from 'react-native'
-import {updateMemberAction} from '../Redux/action';
-import {Picker} from '@react-native-picker/picker';
-import {useDispatch} from 'react-redux';
+import {updateMemberAction} from '../Redux/action'
+import {Picker} from '@react-native-picker/picker'
+import {useDispatch} from 'react-redux'
 
 export const UpdateMember = ({visible, onClose, memberData}) => {
-  const dispatch = useDispatch();
-  const [updateMember, setUpdateMember] = useState(memberData);
-  console.warn('update', updateMember);
+  const dispatch = useDispatch()
+  const [updateMember, setUpdateMember] = useState(memberData)
   const handleUpdateMember = () => {
-    console.warn('memberid', memberData.id);
-    console.warn('updatedmember', updateMember);
     dispatch(
       updateMemberAction({id: memberData.id, updateMember: updateMember}),
-    );
-    onClose();
-  };
+    )
+    onClose()
+  }
   return (
     <Modal visible={visible} animationType="slide">
+      {/* User can update the employee information with these
+      form where data remain persisted when the user clicks on update */}
+
       <View style={styles.modalContainer}>
         <TextInput
           defaultValue={memberData?.name}
           value={updateMember?.name}
           onChangeText={text => setUpdateMember({...updateMember, name: text})}
           style={styles.textinput}
+          placeholderTextColor="black"
         />
 
         <Picker
@@ -54,12 +55,14 @@ export const UpdateMember = ({visible, onClose, memberData}) => {
           value={memberData?.phone}
           onChangeText={text => setUpdateMember({...updateMember, phone: text})}
           style={styles.textinput}
+          placeholderTextColor="black"
         />
         <TextInput
           defaultValue="Email"
           value={memberData?.email}
           onChangeText={text => setUpdateMember({...updateMember, email: text})}
           style={styles.textinput}
+          placeholderTextColor="black"
         />
         <View style={styles.buttons}>
           <TouchableOpacity
@@ -94,6 +97,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     borderWidth: 1,
     marginTop: 10,
+    color: 'black',
   },
   btnElement: {
     backgroundColor: 'blue',
@@ -120,4 +124,4 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 5,
   },
-});
+})

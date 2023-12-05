@@ -1,14 +1,14 @@
-import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
-import {useSelector} from 'react-redux';
+import React from 'react'
+import {Text, View, StyleSheet} from 'react-native'
+import {useSelector} from 'react-redux'
 
 export const HrTeams = () => {
-  const companyData = useSelector(state => state.company);
+  const companyData = useSelector(state => state.company)
 
   const hrTeamMembers = companyData[0]?.company_teamMembers
     ?.filter(item => item.position === 'Head of Staff/HR')
     ?.map(item => item.teamMembers_dept)
-    ?.flat();
+    ?.flat()
 
   return (
     <View>
@@ -25,32 +25,32 @@ export const HrTeams = () => {
         ))}
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   listItem: {
     flexDirection: 'row',
-    height: 100, 
+    height: 100,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: '#ddd', 
+    borderBottomColor: '#ddd',
     paddingLeft: '10%',
     backgroundColor: '#D3D3D3',
   },
   innerlistItem: {
     flexDirection: 'row',
-    height: 100, 
+    height: 100,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: '#ddd', 
-    paddingLeft: '10%'
+    borderBottomColor: '#ddd',
+    paddingLeft: '10%',
   },
   itemText: {
     fontSize: 18,
     flex: 1,
-    
+    color: 'black',
   },
 })

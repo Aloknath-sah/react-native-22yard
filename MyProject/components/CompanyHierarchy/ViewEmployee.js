@@ -6,7 +6,8 @@ import {
   Button,
   TextInput,
   TouchableOpacity,
-} from 'react-native';
+  FlatList,
+} from 'react-native'
 import {useDispatch, useSelector} from 'react-redux'
 import {useNavigation} from '@react-navigation/native'
 import {removeMember, updateMember} from '../Redux/action'
@@ -16,7 +17,6 @@ import {useState, useEffect} from 'react'
 export const ViewEmployee = () => {
   const navigation = useNavigation()
   const dispatch = useDispatch()
-  //const employeeData = useSelector((state) => state.teamMembers);
   const employeeData = useSelector(state => state.teamMembers)
 
   useEffect(() => {
@@ -57,14 +57,17 @@ export const ViewEmployee = () => {
 
   return (
     <View style={styles.container}>
-      
+      {/* Under manage employee button company can see all its employees lists */}
       <TextInput
         style={styles.searchInput}
         placeholder="Search by Name, Phone, or Email"
         onChangeText={text => setSearchText(text)}
         value={searchText}
+        placeholderTextColor="black"
       />
-      <TouchableOpacity onPress={handleAddNewMember} style={styles.buttonTopAdd}>
+      <TouchableOpacity
+        onPress={handleAddNewMember}
+        style={styles.buttonTopAdd}>
         <Text style={styles.buttonTextTopAdd}>Add new Member</Text>
       </TouchableOpacity>
       <View style={styles.listItemTop}>
@@ -72,33 +75,37 @@ export const ViewEmployee = () => {
         <Text style={styles.itemText}> Employee {'\n'}Name</Text>
         <Text style={styles.itemText}> Update/ {'\n'}Remove</Text>
       </View>
-      {filteredEmployees.map(item => (
-        <View style={styles.listItem} key={item.id}>
-          <Text style={styles.itemText}> {item.position} </Text>
-          <Text style={styles.itemText}> {item.name} </Text>
-          <View style={styles.button}>
-            <TouchableOpacity
-              onPress={() => handleUpdateMember(item)}
-              style={styles.btnElement}>
-              <Text style={styles.buttonText}>Update Member </Text>
-            </TouchableOpacity>
+      <FlatList
+        data={filteredEmployees}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => (
+          <View style={styles.listItem} key={item.id}>
+            <Text style={styles.itemText}> {item.position} </Text>
+            <Text style={styles.itemText}> {item.name} </Text>
+            <View style={styles.button}>
+              <TouchableOpacity
+                onPress={() => handleUpdateMember(item)}
+                style={styles.btnElement}>
+                <Text style={styles.buttonText}>Update Member </Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => handleRemoveMember(item.id)}
-              style={styles.btnElement}>
-              <Text style={styles.buttonText}>Remove Member </Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => handleRemoveMember(item.id)}
+                style={styles.btnElement}>
+                <Text style={styles.buttonText}>Remove Member </Text>
+              </TouchableOpacity>
+            </View>
+            <UpdateMember
+              visible={isModalVisible}
+              onClose={closeModal}
+              memberData={selectedMember}
+            />
           </View>
-          <UpdateMember
-            visible={isModalVisible}
-            onClose={closeModal}
-            memberData={selectedMember}
-          />
-        </View>
-      ))}
+        )}
+      />
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -115,7 +122,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignItems: 'center',
     marginBottom: 5,
-    margin: 10
+    margin: 10,
   },
   button: {
     flexDirection: 'column',
@@ -139,7 +146,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
     backgroundColor: '#D3D3D3',
-    margin: 10
+    margin: 10,
   },
   listItem: {
     flexDirection: 'row',
@@ -148,12 +155,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
-    margin: 10
+    margin: 10,
   },
   itemText: {
     fontSize: 18,
     flex: 1,
     textAlign: 'center',
+    color: 'black',
   },
   searchInput: {
     height: 40,
@@ -161,5 +169,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     margin: 10,
     padding: 10,
+    color: 'black',
   },
 })

@@ -25,33 +25,32 @@ export const DesignTeams = () => {
         ))}
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   listItem: {
     flexDirection: 'row',
-    height: 100, 
+    height: 100,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: '#ddd', 
+    borderBottomColor: '#ddd',
     paddingLeft: '10%',
     backgroundColor: '#D3D3D3',
   },
   innerlistItem: {
     flexDirection: 'row',
-    height: 100, 
+    height: 100,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: '#ddd', 
-    paddingLeft: '10%'
+    borderBottomColor: '#ddd',
+    paddingLeft: '10%',
   },
   itemText: {
     fontSize: 18,
     flex: 1,
-    
+    color: 'black',
   },
 })
-

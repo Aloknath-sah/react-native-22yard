@@ -1,7 +1,6 @@
 import companyData from '../companyData';
 
 const extractTeamMembers = arrayStructure => {
-  console.log('arrayStructure', arrayStructure)
   const newTeamMembers = []
 
   arrayStructure.forEach(innerArray => {
@@ -19,10 +18,6 @@ const extractTeamMembers = arrayStructure => {
   return newTeamMembers
 }
 
-console.log(
-  'companyData',
-  companyData[0]?.company_teamMembers?.map(item => item?.teamMembers_dept),
-)
 const initialState = {
   company: companyData,
   teamMembers: extractTeamMembers(
@@ -31,7 +26,6 @@ const initialState = {
 }
 
 const rootReducer = (state = initialState, action) => {
-  console.log('teamMembers', state.teamMembers)
   switch (action.type) {
     case 'ADD_MEMBER':
       return {...state, teamMembers: [...state.teamMembers, action.payload]}
@@ -43,8 +37,6 @@ const rootReducer = (state = initialState, action) => {
         ),
       }
     case 'UPDATE_MEMBER':
-      console.warn('team', state.teamMembers)
-      console.warn('pay', action.payload)
       return {
         ...state,
         teamMembers: state.teamMembers.map(employee =>

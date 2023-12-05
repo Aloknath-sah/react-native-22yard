@@ -14,6 +14,7 @@ export const HomePage = () => {
   }
   return (
     <View style={styles.container}>
+      {/* Homepage to start the user journey */}
       <TouchableOpacity style={styles.button} onPress={handleManageTeam}>
         <Text style={styles.buttonText}>Manage Team</Text>
       </TouchableOpacity>

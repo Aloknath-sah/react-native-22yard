@@ -1,5 +1,12 @@
 import React, {useState} from 'react'
-import {View, Text, TextInput, Button, StyleSheet, TouchableOpacity} from 'react-native'
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native'
 import {useDispatch} from 'react-redux'
 import {addMember} from '../Redux/action'
 import {useNavigation} from '@react-navigation/native'
@@ -14,19 +21,21 @@ export const AddTeamMember = () => {
     position: '',
     phone: '',
     email: '',
-  });
+  })
 
   const handleAddMember = () => {
     dispatch(addMember({...newMember, id: Date.now()}))
     navigation.navigate('MemberList')
-  };
+  }
   return (
     <View>
+      {/* Creating Form for user to add new team members */}
       <TextInput
         placeholder="Name"
         value={newMember.name}
         onChangeText={text => setMember({...newMember, name: text})}
         style={styles.TextInput}
+        placeholderTextColor="black"
       />
       <Picker
         selectedValue={newMember.position}
@@ -44,26 +53,28 @@ export const AddTeamMember = () => {
         value={newMember.phone}
         onChangeText={text => setMember({...newMember, phone: text})}
         style={styles.TextInput}
+        placeholderTextColor="black"
       />
       <TextInput
         placeholder="Email"
         value={newMember.email}
         onChangeText={text => setMember({...newMember, email: text})}
         style={styles.TextInput}
+        placeholderTextColor="black"
       />
       <TouchableOpacity onPress={handleAddMember} style={styles.button}>
         <Text style={styles.buttonText}>Add Team Member</Text>
       </TouchableOpacity>
     </View>
-  );
-};
+  )
+}
 const styles = StyleSheet.create({
   picker: {
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
     backgroundColor: '#D3D3D3',
-    marginTop: 10
+    marginTop: 10,
   },
   buttonText: {
     color: 'white',
@@ -75,11 +86,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignItems: 'center',
     marginBottom: 5,
-    marginTop: 10
+    marginTop: 10,
   },
   TextInput: {
     borderWidth: 1,
     marginTop: 10,
-    paddingLeft: 15
-  }
+    paddingLeft: 15,
+    color: 'black',
+  },
 })
